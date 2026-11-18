@@ -5,6 +5,20 @@ step, no runtime dependencies, only CSS tokens plus a few DOM decorations.
 
 ## Unreleased
 
+- Fixed: the sidebar brand lockup stays visible on DSH 0.2.2-rc.1 (#9,
+  upstream PR #10 by @deepseekmaid). The host moved the mark into
+  `[data-slot="sidebar.brand.mark"]` with the 23.16x17.04 fish logo; the crest
+  now installs for that node too, the two CSS rules that hid the native
+  identity unconditionally are gone, and `hideStrayWhales()` leaves the brand
+  subtree alone. If the crest image fails to load, the original lockup is
+  restored instead of leaving a blank area. Legacy `viewBox="26 0 156 24"`
+  builds are unchanged.
+- Documented: this theme and other full skins are mutually exclusive (#8).
+  Running it together with `@smalltailqwq/dsh-client-ui-skin-maid-atelier`
+  yields a mixed palette, double artwork and a squashed sidebar; see
+  `docs/COMPATIBILITY.md`.
+- Maintenance: the fork's `custom` branch is the maintained branch; `main`
+  only tracks upstream.
 - Fixed: the Plugins and New Session icons keep their custom art on DSH 0.2.2.
   Product icons now render through the ui-theme sprite as
   `<svg data-icon="…"><use href="#…"/></svg>` with no `viewBox`; the icon swap

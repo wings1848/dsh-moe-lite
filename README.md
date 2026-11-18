@@ -8,6 +8,10 @@
 
 给 DeepSeek Harness（DSH）的一套安静、轻量的白蓝皮肤：白色为主、DeepSeek 蓝做点缀，侧栏是半透明底色与立绘，输入框保留毛玻璃，右侧一张做了渐隐的鲸鱼娘女仆立绘。
 
+> **Fork 维护说明**：本仓库是 [wings1848/dsh-moe-lite](https://github.com/wings1848/dsh-moe-lite)。
+> 上游 `KurosawaGeeker/dsh-moe-lite` 暂时无暇维护；`main` 只跟踪上游，`custom` 是维护主分支，
+> 上游的 issue/PR 修复先合入这里。npm 上的 `dsh-moe-clean` 仍由上游发布，不包含本 fork 的修复。
+
 ## 界面
 
 | 亮色 · 新会话 | 暗色 · 插件页 |
@@ -98,15 +102,30 @@ npm pack && dsh plugin --profile desktop add ./dsh-moe-clean-0.15.3.tgz
 
 > 桌面版由应用管理自己的 `desktop` profile，用 `web` profile 的命令不会装到桌面版里。
 
+### 本 fork（custom 分支）
+
+npm 包仍由上游发布。要从本 fork 安装，把 git 源指到 `custom`：
+
+```sh
+dsh plugin --profile web add 'github:wings1848/dsh-moe-lite#custom'
+```
+
+`main` 只同步上游，不包含这里的修复。
+
 ## 兼容性
 
 | DSH | 状态 |
 | --- | --- |
 | `0.2.1-rc.2` | 实测（桌面版 / web） |
-| `0.2.2-rc.1` | 图标管线已适配（jsdom 验证） |
+| `0.2.2-rc.1` | 品牌区与图标管线已适配（jsdom 验证） |
 | 其它 `0.2.x` | 未实测 |
 
 只用到了 CSS 变量、`data-*` 属性和按钮的 `aria-label`，侧栏与弹窗用稳定的类名前缀，不依赖构建时的哈希。图标替换同时接受旧版内联 `viewBox="0 0 16 16"` 和新版 sprite 的 `data-icon` 属性；DSH 改版后如果图标没被替换，先看 `lib/client.js` 里的 `isSwappableIcon()`，再核对 `aria-label` 文案对应的正则。
+
+**皮肤之间是互斥的**：本主题会重写 `--dsw-alias-*` 令牌并装饰侧栏品牌区、新建会话按钮等节点，
+和另一套整体皮肤（例如 `@smalltailqwq/dsh-client-ui-skin-maid-atelier` 深海女仆工坊）同时启用，
+会得到混合配色、双重立绘和被压扁的侧栏，而不是叠加效果。请同时只启用一套；
+具体冲突与恢复方式见 [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md)。
 
 ## 自定义
 
