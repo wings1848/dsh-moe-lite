@@ -13,6 +13,14 @@ step, no runtime dependencies, only CSS tokens plus a few DOM decorations.
   subtree alone. If the crest image fails to load, the original lockup is
   restored instead of leaving a blank area. Legacy `viewBox="26 0 156 24"`
   builds are unchanged.
+- Hardened after review: the crest install is scoped to the expanded brand
+  lockup — DSH 0.2.2 renders the same `sidebar.brand.mark` slot inside the
+  collapsed rail toggle, and the previous selector hid the rail mark and the
+  expand icon. The macOS / `!canStartSession` span brand is now a lockup host
+  too, the stray-whale cleanup keeps both the brand fish and the rail toggle
+  mark, the native lockup stays visible until the crest has decoded, a failed
+  crest is not retried on every mutation, and unloading while the crest is in
+  flight no longer hides the native identity.
 - Documented: this theme and other full skins are mutually exclusive (#8).
   Running it together with `@smalltailqwq/dsh-client-ui-skin-maid-atelier`
   yields a mixed palette, double artwork and a squashed sidebar; see

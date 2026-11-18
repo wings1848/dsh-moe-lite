@@ -124,7 +124,7 @@ dsh plugin --profile web add 'github:wings1848/dsh-moe-lite#custom'
 
 **皮肤之间是互斥的**：本主题会重写 `--dsw-alias-*` 令牌并装饰侧栏品牌区、新建会话按钮等节点，
 和另一套整体皮肤（例如 `@smalltailqwq/dsh-client-ui-skin-maid-atelier` 深海女仆工坊）同时启用，
-会得到混合配色、双重立绘和被压扁的侧栏，而不是叠加效果。请同时只启用一套；
+会得到混合配色、双重立绘和错位的侧栏排版，而不是叠加效果。请同时只启用一套；
 具体冲突与恢复方式见 [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md)。
 
 ## 自定义

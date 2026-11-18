@@ -1,7 +1,7 @@
 # 与其它皮肤共存吗？
 
 **结论：不要和其它“整体皮肤”同时启用。** 一套皮肤会重写 DSH 的设计令牌并装饰同一批 DOM；
-两套一起开，得到的不是叠加效果，而是混合配色、双重立绘和被压扁的侧栏。
+两套一起开，得到的不是叠加效果，而是混合配色、双重立绘和错位的侧栏排版。
 
 本页具体回答上游 issue
 [KurosawaGeeker/dsh-moe-lite#8](https://github.com/KurosawaGeeker/dsh-moe-lite/issues/8)：
@@ -21,7 +21,8 @@
 按 CSS 优先级，maid-atelier 的令牌会赢（它的作用域选择器更具体），但 `dsh-moe-clean`
 对背景、侧栏高度等属性带了 `!important`，这些又会压过 maid-atelier 的普通声明。
 结果不是“谁的皮肤生效”，而是逐条属性各赢一部分：深蓝蕾丝面板配白蓝渐变底、
-60px 装饰边框里塞着 44px 字标，是最常见的混合态。
+金边 logo 框里换成 44px crest、缎带新建按钮同时带着两套 padding / border 规则，
+是最常见的混合态。
 
 ### 2. 装饰同一批侧栏节点
 
@@ -34,8 +35,10 @@
 | 右侧/背景立绘 | 固定定位的女仆 + 侧栏底纹 | `[data-skin-chrome]` 角色舞台 + 宫殿背景 |
 
 两边都靠类名前缀匹配，所以冲突不是“找不到节点”，而是“都找到了、都改了”。
-`dsh-moe-clean` 的 `!important` 尺寸规则会赢，maid-atelier 的装饰背景会留着，
-最终排版按 `dsh-moe-clean` 收窄，配色和边框按 maid-atelier 走。
+`height` 与 `min-height` 的胜负也要分开看：`dsh-moe-clean` 的
+`height: 56px / 34px !important` 不会把 maid-atelier 的
+`min-height: 60px / 58px` 压小，最终高度仍取较大值；冲突主要体现在
+padding、border-image、背景、字体和定位上，观感是两套装饰叠在一起，而不是单纯变矮。
 
 ### 3. 双重立绘
 
@@ -51,14 +54,18 @@ maid-atelier `0.1.11` 的 `peerDependencies` 是：
 @deepseek-ai/dsh >=0.2.2-rc.3 <0.2.3-0
 ```
 
-`dsh-moe-clean` 的实测矩阵见 README 的兼容性表（当前到 `0.2.2-rc.1`）。在 rc.1 上
-maid-atelier 本身就不满足自己的 peer 范围，组合问题会更多。
+`dsh-moe-clean` 的实测矩阵见 README 的兼容性表（当前到 `0.2.2-rc.1`）。
+`peerDependenciesMeta` 里 `@deepseek-ai/dsh` 被标了 `optional: true`，但 DSH 的
+`evaluatePluginCompatibility()`（`packages/boot/app-boot/src/plugin-compatibility.ts`）
+不读 `optional`：在 `0.2.2-rc.1` 上它仍会把 maid-atelier 判为与运行时
+`>=0.2.2-rc.3` 不匹配，安装/重启需要 `dsh plugin allow-version` 做精确版本豁免。
+也就是说，rc.1 上两者根本轮不到“样式打架”，maid-atelier 自己就会被门禁拦下。
 
-### 5. 卸载/切换的顺序依赖
+### 5. 卸载/切换的顺序依赖（推断，未实测）
 
-两套插件都靠 effect 销毁器还原 DOM/CSS。同时启用后，先卸载谁会影响还原结果：
+两套插件都靠 effect 销毁器还原 DOM/CSS。按实现推断，同时启用后先卸载谁会影响还原结果：
 皮肤 A 卸载时把共享节点恢复成“原生”，皮肤 B 仍以为自己接管着它；之后再卸载 B 才是最终态。
-这不是数据损坏，但会出现“切换后要再刷新一次才正常”的观感。
+这不是数据损坏，但没有做过真实浏览器实测，只能作为“切换后可能需要再刷新一次”的风险提示。
 
 ## 怎么做
 
