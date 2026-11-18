@@ -110,7 +110,7 @@ npm 包仍由上游发布。要从本 fork 安装，把 git 源指到 `custom`�
 dsh plugin --profile web add 'github:wings1848/dsh-moe-lite#custom'
 ```
 
-`main` 只同步上游，不包含这里的修复。
+`#custom` 是移动分支；要可复现安装，把 ref 换成 commit（`#<sha>`）。`main` 只同步上游，不包含这里的修复。
 
 ## 兼容性
 

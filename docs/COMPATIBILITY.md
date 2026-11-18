@@ -29,7 +29,7 @@
 | 节点 | `dsh-moe-clean` | maid-atelier |
 | --- | --- | --- |
 | `[class*="logoRow"]` | `height: 56px !important`，字标绝对居中 | 60px 高、金边装饰框、`margin: 8px` |
-| `button[class*="brand"]` | 隐藏原生 identity，插入 44px stacked crest | 给 182px 原生字标上金色、加投影 |
+| `button[class*="brand"]` | 隐藏原生 identity，插入 44px stacked crest | 给 182px 原生字标上金色、加投影（仅 button 分支；macOS 的 span 品牌吃不到） |
 | `button[class*="newSession"]` | `height: 34px !important` | 58px 高、缎带背景、衬线字体 |
 | `[class*="panelRow"]` | 32px 行高、2px 间距 | 自己的导航行与侧栏配色 |
 | 右侧/背景立绘 | 固定定位的女仆 + 侧栏底纹 | `[data-skin-chrome]` 角色舞台 + 宫殿背景 |
