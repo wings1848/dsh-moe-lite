@@ -1,6 +1,6 @@
 # dsh-moe-clean · 鲸鱼娘轻量皮肤
 
-![version](https://img.shields.io/badge/version-0.15.3-2f6bf0?style=flat-square)
+![version](https://img.shields.io/badge/version-0.15.4-2f6bf0?style=flat-square)
 ![npm](https://img.shields.io/npm/v/dsh-moe-clean?style=flat-square&color=2f6bf0)
 ![platform](https://img.shields.io/badge/DSH-0.2.x-1f2a3a?style=flat-square)
 ![code](https://img.shields.io/badge/code-MIT-2f6bf0?style=flat-square)
@@ -79,7 +79,7 @@ dsh plugin --profile web add 'github:KurosawaGeeker/dsh-moe-lite'
 
 ### npm
 
-已发布到 npm：[`dsh-moe-clean`](https://www.npmjs.com/package/dsh-moe-clean)，当前最新 `0.15.3`。
+上游已发布到 npm：[`dsh-moe-clean`](https://www.npmjs.com/package/dsh-moe-clean)，上游当前最新 `0.15.3`；本 fork 的版本是 `0.15.4`，见下文 custom 分支。
 
 ```sh
 dsh plugin --profile desktop add dsh-moe-clean
@@ -97,20 +97,21 @@ npm install dsh-moe-clean
 git clone https://github.com/KurosawaGeeker/dsh-moe-lite dsh-moe-clean
 dsh plugin --profile desktop add ./dsh-moe-clean
 # 或
-npm pack && dsh plugin --profile desktop add ./dsh-moe-clean-0.15.3.tgz
+npm pack && dsh plugin --profile desktop add ./dsh-moe-clean-0.15.4.tgz
 ```
 
 > 桌面版由应用管理自己的 `desktop` profile，用 `web` profile 的命令不会装到桌面版里。
 
 ### 本 fork（custom 分支）
 
-npm 包仍由上游发布。要从本 fork 安装，把 git 源指到 `custom`：
+npm 包仍由上游发布，本 fork 尚未发 npm。推荐固定到 tag：
 
 ```sh
-dsh plugin --profile web add 'github:wings1848/dsh-moe-lite#custom'
+dsh plugin --profile web add 'github:wings1848/dsh-moe-lite#v0.15.4'
 ```
 
-`#custom` 是移动分支；要可复现安装，把 ref 换成 commit（`#<sha>`）。`main` 只同步上游，不包含这里的修复。
+跟随最新维护提交可用 `#custom`；需要完全可复现时把 ref 换成 commit（`#<sha>`）。
+`main` 只同步上游，不包含这里的修复。
 
 ## 兼容性
 
@@ -192,6 +193,7 @@ dsh-moe-clean/
 - **0.15**：顶栏换成 deepseek + HARNESS 双层蕾丝缎带字标，原来的鲸鱼 + 字标 + 徽章组合与 `harness-banner.webp` 一并移除；
 - **0.15.1**：字标与「新会话」按钮中轴线对齐，品牌行固定 80px，旧字标连同鲸鱼一起彻底隐藏；
 - **0.15.2**：字标最下方加入官方 DeepSeek 鲸鱼 logo，居中放在两个蝴蝶结之间。
+- **0.15.4**：fork 首个 tag；合入上游 PR #10 修复 0.2.2 品牌区空白，并修复折叠 rail / macOS span / crest 失败重试三个回归；补皮肤互斥说明。
 - **0.15.3**：插件页换成「禁止鲸尾」Q 版立绘（其它页面不变），插件页开关与卡片悬停底色加实。
 
 ## 许可与署名

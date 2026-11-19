@@ -3,7 +3,9 @@
 All notable changes to this theme. The plugin is intentionally small: no build
 step, no runtime dependencies, only CSS tokens plus a few DOM decorations.
 
-## Unreleased
+## 0.15.4 — 2026-11-19
+
+First tagged release of the fork's `custom` maintenance line.
 
 - Fixed: the sidebar brand lockup stays visible on DSH 0.2.2-rc.1 (#9,
   upstream PR #10 by @deepseekmaid). The host moved the mark into
@@ -23,7 +25,7 @@ step, no runtime dependencies, only CSS tokens plus a few DOM decorations.
   flight no longer hides the native identity.
 - Documented: this theme and other full skins are mutually exclusive (#8).
   Running it together with `@smalltailqwq/dsh-client-ui-skin-maid-atelier`
-  yields a mixed palette, double artwork and a squashed sidebar; see
+  yields a mixed palette, double artwork and misaligned sidebar layout; see
   `docs/COMPATIBILITY.md`.
 - Maintenance: the fork's `custom` branch is the maintained branch; `main`
   only tracks upstream.
